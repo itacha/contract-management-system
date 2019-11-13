@@ -1,0 +1,72 @@
+<sf #sfUser [schema]="schema" [formData]="item" button="none">
+  
+  <span style="color:red">*</span>产品名称：<nz-select
+    style="width: 50%"
+    nzMode="multiple"
+    [(ngModel)]="listOfSelectedValue"
+  >
+    <nz-option *ngFor="let option of optionList" [nzLabel]="option.name" [nzValue]="option"></nz-option>
+  </nz-select>
+  <ng-template #tagPlaceHolder let-selectedList> and {{ selectedList.length }} more selected </ng-template>
+
+  <div *ngFor="let o of listOfSelectedValue;let i=index;" style="margin:10px 0;border-bottom:1px solid #ccc;padding-bottom:10px">
+    产品名称：{{o.name}}
+    <!-- <button nz-button nzType="default" (click)="deletePro(o.productId)" style="margin-left:50%">删除</button> -->
+    <div class="mg-10"></div>
+    <span style="color:red">*</span>期限类型：<nz-select style="width: 120px;"  nzAllowClear [(ngModel)]="o.periodType">
+          <nz-option nzValue="0" nzLabel="永久"></nz-option>
+          <nz-option nzValue="1" nzLabel="时间段"></nz-option>
+        </nz-select>
+        <div class="mg-10" *ngIf="o.periodType==1">
+          <span style="color:red">*</span>授权期限：<nz-range-picker [(ngModel)]="o.period" (ngModelChange)="periodChange($event,i)" 
+        [nzDisabledDate]="disabledDate"
+        nzFormat="yyyy-MM-dd"
+        [nzShowTime]="{ nzHideDisabledOptions: true}"
+        ></nz-range-picker>
+      </div>
+        <div class="mg-10"></div>
+        <span style="color:red">*</span>产品功能：<nz-checkbox-group [(ngModel)]="o.json" (ngModelChange)="functionSelect(o.json,i)" ></nz-checkbox-group>
+        <div class="mg-10"></div>
+        <span style="color:red">*</span>功能列表：<nz-upload
+    [(nzFileList)]="profileList1s[o.productId]"
+    [nzBeforeUpload]="beforeUpload2"
+    [nzFilter]="filters2"
+    [nzSize] = 10000
+    [nzMultiple] = true
+    [nzRemove] = "removeFiles2"
+    nzFileType = "image/jpeg,image/png,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/pdf"
+    >
+    <button nz-button (click)="test2(o.productId)">
+      <i nz-icon type="upload"></i><span>选择附件</span>
+    </button>
+  </nz-upload>
+  </div>
+
+    <div class="mg-10"></div>
+  <span style="color:red">*</span>合同附件：<nz-upload
+    [(nzFileList)]="fileList"
+    [nzBeforeUpload]="beforeUpload"
+    [nzFilter]="filters"
+    [nzSize] = 10000
+    [nzMultiple] = true
+    [nzRemove] = "removeFiles"
+    nzFileType = "image/jpeg,image/png,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/pdf"
+    >
+    <button nz-button>
+      <i nz-icon type="upload"></i><span>选择附件</span>
+    </button>
+    <span style="font-size: x-small;color: red;margin-left:20px;">仅限：doc，docx，xls，xlsx，pdf，jpg，png格式文件</span>
+  </nz-upload>
+  <div class="modal-footer">
+    <button nz-button type="button" (click)="newReset()">重置</button>
+    <!-- sfUser.reset() -->
+    <!-- <button nz-button type="submit" [nzType]="'primary'" (click)="submit(sfUser.value)" [disabled]="!sfUser.valid"
+      [nzLoading]="loading">提交</button> -->
+      <button id="MySubmit" nz-button type="submit" [nzType]="'primary'" [nzLoading]="loading" (click)="submit(sfUser.value)" style="margin-top: 16px"  
+      [disabled]="!sfUser.valid||fileList.length == 0||listOfSelectedValue.length==0||!checkPeriodType()||!checkProfileList1s()||!checkJson()||!checkPeriod()">
+        <!-- [disabled]="fileList.length == 0"  -->
+        提交
+      </button>
+  </div>
+</sf>
+

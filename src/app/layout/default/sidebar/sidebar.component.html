@@ -1,0 +1,18 @@
+<div class="alain-default__aside-inner">
+  <nz-dropdown nzTrigger="click" class="alain-default__aside-user">
+    <div nz-dropdown class="user-block-dropdown">
+      <nz-avatar class="alain-default__aside-user-avatar" [nzText]="'USER'" [ngStyle]="{'background-color':'#fff121'}"></nz-avatar>
+      <div class="alain-default__aside-user-info">
+        <strong>{{settings.user.name}}</strong>
+        <p class="text-truncate mb0">{{settings.user.email}}</p>
+      </div>
+    </div>
+    <ul nz-menu>
+      <!-- <li nz-menu-item (click)="msgSrv.success('profile')">个人中心</li>
+      <li nz-menu-item (click)="msgSrv.success('settings')">设置</li> -->
+      <li nz-menu-item (click)="gotoUpdatePassWord()"><i class="anticon anticon-edit mr-sm"></i>修改密码</li>
+      <li nz-menu-item (click)="logout()"><i class="anticon anticon-logout mr-sm"></i>退出登录</li>
+    </ul>
+  </nz-dropdown>
+  <sidebar-nav class="d-block py-lg"></sidebar-nav>
+</div>

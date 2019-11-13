@@ -1,0 +1,15 @@
+<sf mode="search" [schema]="searchSchema" [formData]="params" (formSubmit)="searchDataGet($event)" (formReset)="reSetDataGet(params)"></sf>
+
+<st #st [data]="url" [req]="reqReName" [res]="resReName" [ps]="10" [columns]="columns" [scroll]="scroll" [size]="tableSize"
+  pagePlacement="center" (change)="change($event)" showPagination="true" toTopInChange="false" showSizeChanger showQuickJumper showTotal
+  isPageIndexReset>
+</st>
+
+<div class="modal-footer">
+  <button nz-button [nzType]="'primary'" (click)="save($event)" [disabled]="selectedItems.length === 0">
+    确 定
+  </button>
+  <button nz-button [nzType]="'default'" (click)="cancel($event)">
+    取 消
+  </button>
+</div>

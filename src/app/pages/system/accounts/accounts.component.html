@@ -1,0 +1,116 @@
+<page-header>
+    <ng-template #content>
+        <small>{{head_content}}</small>
+    </ng-template>
+</page-header>
+
+<!-- <nz-row [nzGutter]="24" class="py-lg">
+  <nz-col [nzSpan]="8">
+
+    <nz-card nzTitle="用户组设置" [nzExtra]="groupTpl"> -->
+<!-- <nz-input-group [nzSuffix]="suffixIcon">
+        <input type="text" nz-input placeholder="搜索用户组" [(ngModel)]="searchValue">
+      </nz-input-group>
+      <ng-template #suffixIcon>
+        <i class="anticon anticon-search"></i>
+      </ng-template> -->
+
+<!-- <nz-tree
+        [nzSearchValue]="searchValue"
+        [(ngModel)]="nodes"
+        [nzShowLine]="true"
+        [nzDefaultExpandedKeys]="expandKeys"
+        (nzExpandChange)="selectNode('expand',$event)"
+        (nzContextMenu)="selectNode('contextmenu', $event)"
+        (nzClick)="treeNodeClick('click',$event)">
+
+        <ng-template #nzTreeTemplate let-node>
+          <span class="custom-node" draggable="true" aria-grabbed="true" [class.active]="node.isSelected">
+            <span>
+              {{node.title}}
+
+              <span *ngIf="node.isSelected" style="padding-left: 40px;">
+                <a (click)="editGroup(selectedItem)">
+                  编辑</a>
+                <nz-divider *ngIf="node.isLeaf" nzType="vertical"></nz-divider>
+                <a *ngIf="node.isLeaf" (click)="removeGroup(selectedItem)">
+                  删除</a>
+              </span>
+            </span>
+          </span>
+        </ng-template>
+      </nz-tree>
+
+      <ng-template #groupTpl>
+        <a (click)="addGroup()">
+          <i class="anticon anticon-plus"></i>
+          新建组</a>
+      </ng-template>
+    </nz-card>
+  </nz-col>
+  <nz-col [nzSpan]="16">
+    <nz-card *ngIf="selectedItem.title" [nzTitle]="selectedItem.title + '的成员'" [nzExtra]="accountTpl">
+      <app-base-stand #accountList [operations]="operationColumn" [queryUrl]="'/api/account/query'" [queryParams]="accountQueryParams"
+        [domain]="'account'"></app-base-stand>
+      <ng-template #accountTpl>
+        <a (click)="addAccount()">
+          新建帐号</a>
+      </ng-template>
+
+    </nz-card>
+  </nz-col>
+
+
+</nz-row> -->
+<nz-row [nzGutter]="24">
+    <nz-col [nzSpan]="8">
+      <nz-card nzTitle="组织设置" [nzExtra]="groupTpl">
+        <!-- 分组下拉树 -->
+        <nz-tree
+        [(ngModel)]="nodes"
+        [nzShowLine]="true"
+        [nzDefaultExpandAll]="true"
+        [nzDefaultSelectedKeys] = "defaultSelectedKeys"
+        (nzClick)="treeClick($event)"
+        (nzContextMenu)="treeRightClick($event)"
+        >
+      </nz-tree>
+          <ng-template #groupTpl>
+              <a (click)="addUserGroup(selectNodeItem)">
+                <i class="anticon anticon-plus"></i>
+                新增分组</a> &nbsp;&nbsp;
+              <a nz-popconfirm [nzTitle]="'删除后数据无法恢复，确定删除['+selectNodeItem.groupName+']么?'" nzOkText="取消"
+              nzCancelText="确定" (nzOnCancel)="deleteUerGroup(selectNodeItem.groupId)" [nzCondition]="!selectNodeItem.groupName" >
+                <i class="anticon anticon-delete"></i>
+                删除分组</a>
+            </ng-template>
+      </nz-card>
+    </nz-col>
+    <nz-col [nzSpan]="16">
+<!-- 用户列表操作取 -->
+<!-- <full-content (fullscreenChange)="fullChange($event)"> -->
+    <nz-card [nzTitle]="cardTitle" [nzExtra]="userButton">
+        <div nz-row class="mb-md">
+            <div nz-col nzSpan="24">
+                <sf mode="search" [schema]="searchSchema" [formData]="params" (formSubmit)="searchDataGet($event)"
+                    (formReset)="reSetDataGet(params)"></sf>
+            </div>
+            <!-- <div nz-col nzSpan="24">
+                <div class="text-right">
+                    <button *ngIf="selectNodeItem.groupId" nz-button [nzType]="'primary'" (click)="addUser()">新增用户</button>
+                    <button nz-button [nzType]="'default'" full-toggle class="ml-sm">表格全屏</button>
+                </div>
+            </div> -->
+        </div>
+        <st #st [data]="url" [req]="reqReName" [res]="resReName" [ps]="ps" [columns]="columns" [scroll]="{ y: '400px' }" [size]="tableSize"
+            pagePlacement="center" showPagination="true" toTopInChange="false" showSizeChanger showQuickJumper
+            showTotal isPageIndexReset>
+        </st>
+        <ng-template #userButton>
+          <a *ngIf="selectNodeItem.groupId"   (click)="addUser()"> <i class="anticon anticon-user-add"></i> 新增用户</a><br/>
+          <!-- <a  full-toggle class="ml-sm"> <i class="anticon anticon-table"></i> 表格全屏</a> -->
+        </ng-template>
+    </nz-card>
+<!-- </full-content> -->
+</nz-col>
+</nz-row>

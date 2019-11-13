@@ -1,0 +1,38 @@
+<sf #sfUser [schema]="schema" [formData]="item" button="none">
+    <div  *ngFor="let o of productList; let i=index;" style="padding:20px;font-size: 14px;">
+        <div nz-row>
+            <div nz-col nzSpan="12">产品名称：{{o.name}}</div>
+            <div nz-col nzSpan="12" *ngIf="o.periodType==0">授权期限：永久</div>
+            <div nz-col nzSpan="12" *ngIf="o.periodType==1">授权期限：{{o.startTime}}-{{o.endTime}}</div>
+          </div>
+          <div nz-row style="margin-top: 10px;">
+            <div nz-col nzSpan="24">产品功能：{{o.json}}</div>
+          </div>
+          <div *ngIf="profileList1s[o.productId].length>0">
+              <label for="_sf-14">功能列表：</label>
+              <nz-upload
+              [(nzFileList)]="profileList1s[o.productId]"
+              [nzShowButton] = false
+              [nzRemove] = false
+              >
+              </nz-upload>
+          </div>
+    </div>
+  <div nz-row *ngIf="fileList.length>0" style="padding-left:27px;">
+    <nz-col class="ant-col-24 ng-star-inserted" ng-reflect-nz-span="24"  >
+      <label for="_sf-14">合同附件 ：</label>
+        <nz-upload
+        [(nzFileList)]="fileList"
+        [nzShowButton] = false
+        [nzRemove] = false
+        >
+        </nz-upload>
+    </nz-col>
+  </div >
+  <div class="modal-footer">
+    <button nz-button type="button" (click)="sfUser.reset()">重置</button>
+    <button nz-button type="submit" [nzType]="'primary'" (click)="submit(sfUser.value)" [disabled]="!sfUser.valid"
+      [nzLoading]="loading">提交</button>
+  </div>
+</sf>
+

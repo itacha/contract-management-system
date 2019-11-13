@@ -1,0 +1,32 @@
+{
+  "user": {
+    "name": "Admin",
+    "avatar": "./assets/tmp/img/avatar.jpg",
+    "email": "cipchk@qq.com"
+  },
+  "menu": [
+    {
+      "text": "系统",
+      "group": false,
+      "hideInBreadcrumb": true,
+      "children": [
+        {
+            "text": "系统设置",
+            "icon": "anticon antanticon anticon-dashboard",
+            "children": [
+              {
+                "text": "角色管理",
+                "link": "/system/roles",
+                "reuse": true
+              },
+              {
+                "text": "用户管理",
+                "link": "/system/accounts",
+                "reuse": true
+              }
+            ]
+          }
+      ]
+    }
+  ]
+}

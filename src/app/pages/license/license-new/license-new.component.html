@@ -1,0 +1,16 @@
+<page-header [title]="title">
+  <ng-template #content>
+    <small>{{head_content}}</small>
+  </ng-template>
+</page-header>
+<nz-row [nzGutter]="24">
+  <nz-col [nzSpan]="24">
+    <nz-card>
+      <sf mode="search" ></sf>
+      <st #st   
+        pagePlacement="center" showPagination="true" toTopInChange="false" showSizeChanger
+        showQuickJumper showTotal isPageIndexReset>
+      </st>
+    </nz-card>
+  </nz-col>
+</nz-row>

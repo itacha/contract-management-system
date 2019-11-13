@@ -1,0 +1,6 @@
+:host ::ng-deep .ant-select-selection--single {
+  min-width: 174px;
+}
+:host ::ng-deep .rockey {
+  visibility: hidden;
+}

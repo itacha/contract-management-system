@@ -1,0 +1,8 @@
+<sf #sfProduct [schema]="schema" [formData]="item" button="none">
+
+  <div class="modal-footer">
+    <button nz-button type="button" (click)="sfProduct.reset()">重置</button>
+    <button nz-button type="submit" [nzType]="'primary'" (click)="submit(sfProduct.value)" [disabled]="!sfProduct.valid"
+      [nzLoading]="loading">提交</button>
+  </div>
+</sf>

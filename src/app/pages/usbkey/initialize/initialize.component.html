@@ -1,0 +1,28 @@
+<page-header [title]="title">
+  <ng-template #content>
+    <small>{{head_content}}</small>
+  </ng-template>
+</page-header>
+<nz-row [nzGutter]="24" >
+  <!-- 当前插入的UsbKey列表 -->
+  <nz-col [nzSpan]="12" >
+    <sf #sf [schema]="schema"  (formSubmit)="submit($event)" [button]='null' [formData]="params" >
+      <button type="submit" nz-button nzType="primary" [disabled]="!sf.valid">初始化</button>
+      <button (click)="find(sf.value)" type="button" nz-button>获取编号</button>
+      <button (click)="reset(sf)" type="button" nz-button>重置</button>
+    </sf>
+  </nz-col>
+  <!-- 初始化UsbKey -->
+
+  <!-- 制作保存私钥的UsbKey -->
+
+  <!-- 将初始化后的UsbKey信息保存到数据库 -->
+
+  <!-- 根据私钥生成公钥 -->
+
+  <!-- 复制私钥，制作保存私钥的UsbKey -->
+  <nz-col [nzSpan]="12" class="rockey">
+  <object type="application/x-rockey1scom" id="don"></object>
+  <object type="application/x-rockey3plugin" id="ROCKEY3"></object>
+  </nz-col>
+</nz-row>

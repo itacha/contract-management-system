@@ -1,0 +1,23 @@
+<page-header [title]="title">
+  <ng-template #content>
+    <small>{{head_content}}</small>
+  </ng-template>
+</page-header>
+<nz-row [nzGutter]="24">
+  <nz-col [nzSpan]="24">
+    <nz-card>
+      <sf mode="search" [schema]="searchSchema" [formData]="params" (formSubmit)="searchDataGet($event)"
+      (formReset)="reSetDataGet()"></sf>
+      <st #st [data]="logDataList"  [ps]="ps" [columns]="columns" [scroll]="scroll"
+        [size]="tableSize" pagePlacement="center" showPagination="true" toTopInChange="false" showSizeChanger
+        showQuickJumper showTotal isPageIndexReset>
+      </st>
+    </nz-card>
+  </nz-col>
+</nz-row>
+<nz-row>
+  <nz-col class="rockey">
+    <object type="application/x-rockey1scom" id="don"></object>
+    <object type="application/x-rockey3plugin" id="ROCKEY3"></object>
+  </nz-col>
+</nz-row>

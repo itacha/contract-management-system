@@ -1,0 +1,24 @@
+<page-header [title]="title">
+  <ng-template #content>
+    <small>{{head_content}}</small>
+  </ng-template>
+</page-header>
+<nz-row [nzGutter]="24">
+  <nz-col [nzSpan]="24">
+    <nz-card [nzExtra]="BTTemplate">
+      <sf mode="search" [schema]="searchSchema" [formData]="params" (formSubmit)="searchDataGet($event)"
+        (formReset)="reSetDataGet(params)"></sf>
+      <st #st [data]="DataList"  [ps]="ps" [columns]="columns" [scroll]="scroll"
+        [size]="tableSize" pagePlacement="center" showPagination="true" toTopInChange="false" showSizeChanger
+        showQuickJumper showTotal isPageIndexReset>
+      </st>
+    </nz-card>
+    <ng-template #BTTemplate>
+      <a (click)="addContract()">
+        <i class="anticon anticon-user-add"></i>
+         新增合同</a>
+    </ng-template>
+
+
+  </nz-col>
+</nz-row>

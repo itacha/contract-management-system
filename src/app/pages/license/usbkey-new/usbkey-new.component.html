@@ -1,0 +1,24 @@
+<page-header [title]="title">
+  <ng-template #content>
+    <small>{{head_content}}</small>
+  </ng-template>
+</page-header>
+<nz-row [nzGutter]="24">
+  <nz-col [nzSpan]="12">
+    <nz-card *ngIf="flag==0">
+      <p style="color:red">未检测到Ukey设备，请确认是否插入Ukey设备并刷新页面。</p>
+    </nz-card>
+    <nz-card *ngIf="flag>=1">
+      <sf #sf [schema]="schema" [button]="null" [formData]='datas' >
+        <button type="submit" (click)='submit(sf.value)' nz-button nzType="primary" [disabled]="!sf.valid">授权</button>
+        <button (click)="reSetDataGet(datas)" type="button" nz-button>重置</button>
+      </sf>
+    </nz-card>
+  </nz-col>
+</nz-row>
+<nz-row>
+  <nz-col class="rockey">
+    <object type="application/x-rockey1scom" id="don"></object>
+    <object type="application/x-rockey3plugin" id="ROCKEY3"></object>
+  </nz-col>
+</nz-row>

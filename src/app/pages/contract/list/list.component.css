@@ -1,0 +1,15 @@
+:host ::ng-deep .ant-select-selection--single {
+  min-width: 174px;
+}
+:host ::ng-deep .ant-input-number {
+  min-width: 174px;
+}
+.mg-10 {
+  margin: 15px 0;
+}
+.ant-input-number:hover .ant-input-number-handler-wrap {
+  opacity: 0!important;
+}
+.form .ant-input-number-handler-wrap {
+  display: none;
+}

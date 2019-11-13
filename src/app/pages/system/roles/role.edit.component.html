@@ -1,0 +1,7 @@
+<sf #sfRole [schema]="schema" [formData]="item" button="none">
+  <div class="modal-footer">
+    <button nz-button type="button" (click)="sfRole.reset()">重置</button>
+    <button nz-button type="submit" [nzType]="'primary'" (click)="submit(sfRole.value)" [disabled]="!sfRole.valid"
+      [nzLoading]="loading">提交</button>
+  </div>
+</sf>

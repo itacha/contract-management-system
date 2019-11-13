@@ -1,0 +1,71 @@
+<page-header [title]="title">
+  <ng-template #content>
+    <small>{{head_content}}</small>
+  </ng-template>
+</page-header>
+
+<nz-row [nzGutter]="24">
+  <nz-col [nzSpan]="8">
+
+    <nz-card nzTitle="角色列表" class="ant-card__body-nopadding" [nzExtra]="roleTemplate">
+      <nz-table #table [nzShowPagination]="true" [nzData]="entries" [nzTotal]="countRole" [nzFrontPagination]="true" [nzShowTotal] ="totalTemplate"
+      [nzHideOnSinglePage]="true" >
+        <thead>
+          <tr>
+            <th width="20%">角色</th>
+            <th width="40%">描述</th>
+            <th width="40%">操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr [ngClass]="{'selected':item.roleId === selectedItem.id}" *ngFor="let item of table.data">
+            <td>{{item.roleName}}</td>
+            <td>{{item.remark}}</td>
+            <td>
+              <a (click)="editPermission(item,$event)">权限</a>
+              <nz-divider nzType="vertical"></nz-divider>
+              <a (click)="editRole(item,$event)">修改</a>
+              <nz-divider nzType="vertical"></nz-divider>
+              <a (click)="select(item)">用户</a>
+              <nz-divider nzType="vertical"></nz-divider>
+              <a nz-popconfirm nzTitle="确定删除该记录吗？"
+              nzOkText="取消"
+              nzCancelText="确定"
+                (nzOnCancel)="removeRole(item,$event)">
+                删除</a>
+            </td>
+          </tr>
+        </tbody>
+      </nz-table>
+
+      <ng-template #roleTemplate>
+        <a (click)="addRole()">
+          <i class="anticon anticon-plus"></i>
+          新建角色</a>
+      </ng-template>
+      <ng-template #totalTemplate let-total>
+        共 {{countRole}} 条
+      </ng-template>
+    </nz-card>
+  </nz-col>
+
+
+  <nz-col [nzSpan]="16">
+    <nz-card *ngIf="selectedItem.roleName" [nzTitle]="selectedItem.roleName + '的列表'" [nzExtra]="mainTpl">
+
+      <st #st [data]="RoleUserList" [req]="reqReName" [res]="resReName" [ps]="ps" [columns]="columns" [scroll]="scroll"
+        [size]="tableSize"  pagePlacement="center" showPagination="true" toTopInChange="false" showSizeChanger
+        showQuickJumper showTotal isPageIndexReset>
+      </st>
+      <ng-template #mainTpl>
+        <a (click)="addAccountsToRole(selectedItem)">
+          <i class="anticon anticon-plus"></i>
+          添加成员</a>
+      </ng-template>
+
+    </nz-card>
+  </nz-col>
+
+
+
+</nz-row>

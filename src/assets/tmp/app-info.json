@@ -1,0 +1,8 @@
+{
+    "app": {
+      "name": "弘和",
+      "description": "弘和集团订单管理/License授权系统",
+      "logo":"./assets/logo-color.svg",
+      "copyright": "2018 弘和集团"
+    }
+}

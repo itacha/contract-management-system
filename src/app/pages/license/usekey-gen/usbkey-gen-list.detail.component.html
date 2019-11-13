@@ -1,0 +1,52 @@
+<sf #sfUser [schema]="schema" [formData]="item" button="none">
+    <div nz-row style="padding-left:27px;">
+        <div nz-col nzSpan="12">产品名称：{{item.contractProduct.name}}</div>
+        <div nz-col nzSpan="12" *ngIf="item.contractProduct.periodType==0">授权期限：永久</div>
+        <div nz-col nzSpan="12" *ngIf="item.contractProduct.periodType==1">授权期限：{{item.contractProduct.startTime}}-{{item.contractProduct.endTime}}</div>
+      </div>
+      <div nz-row style="margin-top: 10px;padding-left:27px;">
+        <div nz-col nzSpan="24">产品功能：{{item.contractProduct.json}}</div>
+      </div>
+      <div nz-row *ngIf="profileList.length>0" style="padding-left:27px;margin-top: 10px;font-size: 14px;">
+          <nz-col class="ant-col-24 ng-star-inserted" ng-reflect-nz-span="24"  >
+            <label for="_sf-14">功能列表： ：</label>
+              <nz-upload
+              [(nzFileList)]="profileList"
+              [nzShowButton] = false
+              [nzRemove] = false
+              >
+              </nz-upload>
+          </nz-col>
+        </div >
+    <!-- <div  *ngFor="let o of productList; let i=index;" style="padding:20px;font-size: 16px;">
+        <div nz-row>
+            <div nz-col nzSpan="12">产品名称：{{o.name}}</div>
+            <div nz-col nzSpan="12" *ngIf="o.periodType==0">授权期限：永久</div>
+            <div nz-col nzSpan="12" *ngIf="o.periodType==1">授权期限：{{o.startTime}}-{{o.endTime}}</div>
+          </div>
+          <div nz-row style="margin-top: 10px;">
+            <div nz-col nzSpan="24">产品功能：{{o.json}}</div>
+          </div>
+          <div>
+              <label for="_sf-14">功能列表：</label>
+              <nz-upload
+              [(nzFileList)]="profileList1s[o.productId]"
+              [nzShowButton] = false
+              [nzRemove] = false
+              >
+              </nz-upload>
+          </div>
+  </div> -->
+  <div nz-row *ngIf="fileList.length>0" style="padding-left:27px;margin-top: 10px;">
+    <nz-col class="ant-col-24 ng-star-inserted" ng-reflect-nz-span="24"  >
+      <label for="_sf-14">合同附件 ：</label>
+        <nz-upload
+        [(nzFileList)]="fileList"
+        [nzShowButton] = false
+        [nzRemove] = false
+        >
+        </nz-upload>
+    </nz-col>
+  </div >
+</sf>
+
